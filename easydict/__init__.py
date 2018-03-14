@@ -50,16 +50,8 @@ class EasyDict(dict):
 
     Values extraction
 
-    >>> d = EasyDict({'foo':0, 'bar':[{'x':1, 'y':2}, {'x':3, 'y':4}]})
-    >>> isinstance(d.bar, list)
-    True
-    >>> from operator import attrgetter
-    >>> map(attrgetter('x'), d.bar)
-    [1, 3]
-    >>> map(attrgetter('y'), d.bar)
-    [2, 4]
     >>> d = EasyDict()
-    >>> d.keys()
+    >>> list(d.keys())
     []
     >>> d = EasyDict(foo=3, bar=dict(x=1, y=2))
     >>> d.foo
@@ -70,7 +62,7 @@ class EasyDict(dict):
     Still like a dict though
 
     >>> o = EasyDict({'clean':True})
-    >>> o.items()
+    >>> list(o.items())
     [('clean', True)]
 
     And like a class
