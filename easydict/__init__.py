@@ -103,13 +103,7 @@ class EasyDict(dict):
                 setattr(self, k, getattr(self, k))
 
     def __setattr__(self, name, value):
-        if isinstance(value, (list, tuple)):
-            v = [self.__class__(x) if isinstance(x, dict) else x for x in value]
-            try:
-                value = value.__class__(v)
-            except:
-                value = value.__class__(*v)
-        elif isinstance(value, dict) and not isinstance(value, self.__class__):
+        if isinstance(value, dict) and not isinstance(value, self.__class__):
             value = self.__class__(value)
         super(EasyDict, self).__setattr__(name, value)
         super(EasyDict, self).__setitem__(name, value)
